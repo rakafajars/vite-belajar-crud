@@ -7,15 +7,6 @@ const URL = "https://v1.appbackend.io/v1/rows/3Re0ywib1FKO";
 async function app() {
   const contacts = await fetchData<IContactResult>(URL);
 
-  const cardEmptyContact = document.getElementById("empty-contact");
-
-  if (contacts?.data.length == 0) {
-    const emptyState = document.createElement("h3");
-    emptyState.textContent = "Data Kosong";
-    cardEmptyContact?.appendChild(emptyState);
-    return;
-  }
-
   const cardContact = document.getElementById("card-contact");
 
   contacts?.data.forEach((contact) => {
@@ -37,21 +28,23 @@ async function app() {
 
     cards?.append(titleElement, phoneElement, deleteBtn);
 
-    deleteBtn?.addEventListener("click", async () => {
-      try {
-        await fetch(URL, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify([idContact]),
-        });
-      } catch (error) {
-        console.log(error);
-      } finally {
-        window.location.reload();
-      }
-    });
+    if (contacts.data.length > 1) {
+      deleteBtn?.addEventListener("click", async () => {
+        try {
+          await fetch(URL, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify([idContact]),
+          });
+        } catch (error) {
+          console.log(error);
+        } finally {
+          window.location.reload();
+        }
+      });
+    }
 
     cardContact?.appendChild(cards);
   });
