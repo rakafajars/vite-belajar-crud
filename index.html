@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div id="form-contact">
+      <form id="contact-form">
+        <input type="text" id="name" placeholder="Nama" required />
+        <input type="tel" id="phone" placeholder="Nomor Telepon" required />
+        <input type="submit" id="submit-contact" />
+      </form>
+    </div>
+
+    <div id="contact-list">
+      <h2>Contact List</h2>
+      <div id="card-contact" class="card-container"></div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
